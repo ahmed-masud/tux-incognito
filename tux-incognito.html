@@ -1,0 +1,73 @@
+<!--
+@license
+Copyright (c) 2015 Trustifier Inc. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<!--
+A simple behavior and element that determines whether or not
+the browser is running in an is in a private browsing mode.
+
+Attributions:
+  StackOverflow answers on the question.
+
+  This solution was shamelessly stolen from
+  http://jsfiddle.net/w49x9f1a/
+
+Example:
+    <tux-incognito isIncognito="{{status}}"></tux-incognito>
+
+@demo
+-->
+<dom-module id="tux-incognito">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <template is="dom-if" if="{{isPrivate}}">
+      <content></content>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'tux-incognito',
+    properties: {
+
+      /**
+       * `isIncognito` indicates that the element should don a monocle and tophat,
+       * while checking its pocket watch.
+       */
+      isPrivate: {
+        readonly: true,
+        notify: true,
+        type: Boolean
+      }
+    },
+    ready: function() {
+        var fs = window.RequestFileSystem || window.webkitRequestFileSystem;
+        if (!fs) {
+          // check failed.
+          console.log('check failed');
+          this.fire('tux-incognito-fail');
+          this.isPrivate = false;
+        }
+        fs(window.TEMPORARY, 100, function(fs) {
+          console.log('normal window');
+          this.isPrivate = false;
+        }.bind(this), function(err) {
+          console.log('private window');
+          this.isPrivate = true;
+        }.bind(this));
+    }
+  });
+
+</script>
