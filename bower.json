@@ -16,11 +16,6 @@
   "main": "tux-incognito.html",
   "license": "https://github.com/ahmed-masud/tux-incognito/LICENSE.txt",
   "homepage": "https://github.com/ahmed-masud/tux-incognito/",
-  "ignore": [
-    "/.*",
-    "/test/",
-    "/demo/"
-  ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0"
   },
