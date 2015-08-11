@@ -1,13 +1,8 @@
 <!doctype html>
 <!--
 @license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+Copyright (c) 2015 Ahmed Masud <ahmed.masud@trustifier.com>. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-
 -->
 <html>
   <head>
@@ -17,16 +12,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../tux-incognito.html">
   </head>
-  <body>
+  <body unresolved>
+    <template is="dom-bind">
+      <p>An example of <code>&lt;tux-incognito&gt;</code>:</p>
 
-    <p>An example of <code>&lt;tux-incognito&gt;</code>:</p>
-
-    <h1>Content based on privacy of window in Chrome and Firefox</h1>
-    <div>
-      This content shows up everywhere.
-    </div>
-    <tux-incognito>
-        <div>Whereas, this content only shows up in incognito windows</div>
-    </tux-incognito>
+      <h1>Content based on privacy of window in Chrome and Firefox</h1>
+      <div>
+        This content shows up everywhere. <span>{{foo}}</span>
+      </div>
+      <tux-incognito is-private="{{foo}}">
+          <div>Whereas, this content only shows up in incognito windows.<span>{{foo}}</span></div>
+      </tux-incognito>
+    </template>
   </body>
 </html>
